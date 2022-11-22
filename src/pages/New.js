@@ -56,15 +56,25 @@ export default function New() {
         DateEnds: DateEnds,
         StateAcount: checked,
       };
-      console.log(user);
-      await createNewUser(user);
+      // console.log(user);
+      // await createNewUser(user);
+      const response = await createNewUser(user);
+      console.log(response, "response");
 
-      setMessage("Usuario creado correctamente");
-      setTypeMessage("success");
-      setTimeout(() => {
-        setMessage("");
-        navigate("/users");
-      }, 2000);
+      if (response === undefined) {
+        setMessage("Usuario creado correctamente");
+        setTypeMessage("success");
+        setTimeout(() => {
+          setMessage("");
+          navigate("/users");
+        }, 2000);
+      } else {
+        setMessage(response);
+        setTypeMessage("error");
+        setTimeout(() => {
+          setMessage("");
+        }, 2000);
+      }
     } else {
       setMessage("Por favor llene todos los campos");
       setTypeMessage("error");

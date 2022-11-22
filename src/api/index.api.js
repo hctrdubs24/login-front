@@ -4,8 +4,13 @@ export const getUserList = async () =>
   await axios.get("http://localhost:1024/users");
 
 export const createNewUser = async (user) => {
-  console.log(user);
-  await axios.post(`http://localhost:1024/create`, user);
+  // console.log(user);
+  // await axios.post(`http://localhost:1024/create`, user);
+  try {
+    await axios.post(`http://localhost:1024/create`, user);
+  } catch (error) {
+    return "Error al crear el usuario";
+  }
 };
 
 export const getDatosPersonales = async () =>
